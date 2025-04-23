@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { TvShow } from './TvShow';
 import { StudioDropdown } from './StudioDropdown';
+import { ShowSelection } from './ShowSelection';
 
 export function Home() {
   const [tvShows, setTvShows] = useState([]);
   const [studios,setStudios] = useState([]);
   const [selectedStudio, setSelectedStudio] = useState("");
+  const [showInput, setShowInput] = useState("");
 
   
     async function getTvShows() {
@@ -38,6 +40,12 @@ export function Home() {
     if (selectedStudio){
         showFF = showFF.filter(show => show.studio.name === selectedStudio);
     }
+    if (showInput) {
+      showFF = showFF.filter(show => 
+          show.title.toLowerCase().includes(showInput.toLowerCase())
+      );
+  }
+
     return showFF
 
 
@@ -49,10 +57,15 @@ return (
     <section className="section">
       <div className="container">
         <h1 className="title has-text-centered">TV Shows</h1>
-        
-        {/* Studio Dropdown */}
+
+
         <div className="columns is-centered">
           <div className="column is-half">
+            {/* filtre de show selon mot */}
+          <ShowSelection onSearch={setShowInput} />
+          </div>
+          <div className="column is-half">
+            {/* filtre dropdown avec studio */}
             <StudioDropdown 
               studios={studios.map(studio => studio.name)} 
               selectedStudio={selectedStudio}
