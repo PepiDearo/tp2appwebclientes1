@@ -45,19 +45,12 @@ export function Home() {
 
 
 
-
-
-
-
-
-
-
 return (
     <section className="section">
       <div className="container">
         <h1 className="title has-text-centered">TV Shows</h1>
         
-        {/* Studio Dropdown Filter */}
+        {/* Studio Dropdown */}
         <div className="columns is-centered">
           <div className="column is-half">
             <StudioDropdown 
@@ -68,7 +61,7 @@ return (
           </div>
         </div>
 
-        {/* TV Shows Grid */}
+        {/* Affichage de Teleseries */}
         <div className="columns is-multiline">
           {showFiltre().map((show) => (
             <TvShow key={show.tvshowId} tvShow={show} />
@@ -77,16 +70,4 @@ return (
       </div>
     </section>
   );
-}
-
-
-
-function showFiltre(){
-    let showFF=tvShows;
-    if (selectedStudio){
-        showFF = showFF.filter(show => show.studio.name === studios);
-    }
-    return showFF
-
-
 }
