@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { TvShow } from './TvShow';
 import { StudioDropdown } from './StudioDropdown';
 import { ShowSelection } from './ShowSelection';
+import { svrURL } from './constants';
 
 export function Home() {
   const [tvShows, setTvShows] = useState([]);
@@ -11,7 +12,7 @@ export function Home() {
 
   
     async function getTvShows() {
-      const rep = await fetch('https://tvshowdbapi.herokuapp.com/tvshows');
+      const rep = await fetch(svrURL+`/tvshows`);
       if (rep.ok) {
         const tvshow_data = await rep.json();
         setTvShows(tvshow_data);
@@ -19,7 +20,7 @@ export function Home() {
     };
 
     async function getStudios() {
-        const rep = await fetch('https://tvshowdbapi.herokuapp.com/studios');
+        const rep = await fetch(svrURL+`/studios`);
         if (rep.ok) {
           const studio_data = await rep.json();
           setStudios(studio_data);
