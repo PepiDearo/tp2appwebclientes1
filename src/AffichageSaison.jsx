@@ -14,7 +14,7 @@ export function AfficherSaison({ seasons }) {
           }}
         >
           {seasons.map((season) => (
-            <Link to={`/saison/${season.number}`} key={season.number} style={{ textDecoration: 'none' }}>
+            <Link to={`/saison/${season.number}`} key={season.number}>
             <div key={season.number} className="card mx-2" style={{ minWidth: '200px' }}>
               <div className="card-image">
                 <figure className="image is-3by4">
