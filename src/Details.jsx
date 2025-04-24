@@ -100,22 +100,6 @@ export function Details() {
 
         {show && <AfficherSaison seasons={show.seasons} />}
 
-        {/* {show && show.seasons && (
-          <div className="mt-6">
-            <div
-              className="is-flex"
-              style={{
-                overflowX: 'auto',
-                gap: '1rem',
-                paddingBottom: '1rem',
-              }}
-            >
-              {show.seasons.map(season => (
-                <AfficherSaison key={season.number} season={season} />
-              ))}
-            </div>
-          </div>
-        )} */}
 
 
 
