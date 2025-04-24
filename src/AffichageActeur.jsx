@@ -11,7 +11,11 @@ export function AfficherActeurs({ roles }) {
         }}
       >
         {roles.map((role) => (
-          <div key={role.id} className="card mx-2" style={{ minWidth: '200px' }}>
+          <div
+            key={role.id || `${role.name}-${role.character}`}
+            className="card mx-2"
+            style={{ minWidth: '200px' }}
+          >
             <div className="card-image">
               <figure className="image">
                 <img
