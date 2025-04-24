@@ -4,20 +4,16 @@ export function TvShow(props) {
   return (
     <div className="column is-3-desktop is-4-tablet is-6-mobile">
       <Link to={`/details/${props.tvShow.tvshowId}`}>
-        <div className="card">
-          <div className="card-image">
-            <figure className="image is-square">
+        <div className="card" style={{ height: '550px', display: 'flex', flexDirection: 'column' }}>
+          <div className="card-image" style={{ height: '300px' }}>
+            <figure className="image is-square" style={{ height: '100%' }}>
               <img 
                 src={props.tvShow.imgURL} 
                 alt={props.tvShow.title}
                 style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
                   objectFit: 'cover',
-                  objectPosition: 'center'
+                  width: '100%',
+                  height: '100%'
                 }} 
               />
             </figure>
