@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export function AfficherSaison({ seasons }) {
     if (!seasons || seasons.length === 0) return null;
   
@@ -12,6 +14,7 @@ export function AfficherSaison({ seasons }) {
           }}
         >
           {seasons.map((season) => (
+            <Link to={`/saison/${season.number}`} key={season.number} style={{ textDecoration: 'none' }}>
             <div key={season.number} className="card mx-2" style={{ minWidth: '200px' }}>
               <div className="card-image">
                 <figure className="image is-3by4">
@@ -32,6 +35,7 @@ export function AfficherSaison({ seasons }) {
                 <p className="subtitle is-7">Épisodes : {season.episodeCount}</p>
               </div>
             </div>
+          </Link>
           ))}
         </div>
       </div>
