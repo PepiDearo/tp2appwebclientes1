@@ -1,7 +1,8 @@
-import { useState, useEffect,useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { svrURL } from './constants';
 import { AfficherActeurs } from './AffichageActeur';
+import { AfficherSaison } from './Saison';
 
 export function Details() {
   const { id } = useParams();
@@ -9,13 +10,13 @@ export function Details() {
   const audioRef = useRef(null);
 
   async function getTvShowsDetails() {
-    const rep = await fetch(svrURL+`/tvshow/?tvshowId=${id}`);
+    const rep = await fetch(svrURL + `/tvshow/?tvshowId=${id}`);
     if (rep.ok) {
       const show = await rep.json();
       setShow(show);
     }
   };
-  
+
   useEffect(() => {
     getTvShowsDetails();
   }, [id]);
@@ -36,9 +37,9 @@ export function Details() {
           <div className="columns">
             <div className="column is-one-third">
               <figure className="image">
-                <img 
-                  src={show.imgURL} 
-                  alt={show.title} 
+                <img
+                  src={show.imgURL}
+                  alt={show.title}
                   className="has-ratio"
                   style={{ width: '100%', height: 'auto' }}
                 />
@@ -97,13 +98,34 @@ export function Details() {
 
         {show && <AfficherActeurs roles={show.roles} />}
 
+        {show && <AfficherSaison seasons={show.seasons} />}
+
+        {/* {show && show.seasons && (
+          <div className="mt-6">
+            <div
+              className="is-flex"
+              style={{
+                overflowX: 'auto',
+                gap: '1rem',
+                paddingBottom: '1rem',
+              }}
+            >
+              {show.seasons.map(season => (
+                <AfficherSaison key={season.number} season={season} />
+              ))}
+            </div>
+          </div>
+        )} */}
+
+
+
         {/* Back button */}
         <div className="has-text-centered mt-6">
-          <button 
+          <button
             className="button is-primary"
             onClick={() => window.history.back()}
           >
-            
+
             Back to Shows
           </button>
         </div>
