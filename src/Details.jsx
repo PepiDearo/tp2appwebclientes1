@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { svrURL } from './constants';
+import { AfficherActeurs } from './AffichageActeur';
 
 export function Details() {
   const { id } = useParams();
@@ -73,12 +74,16 @@ export function Details() {
         )}
 
 
+
+        {show && <AfficherActeurs roles={show.roles} />}
+
         {/* Back button */}
         <div className="has-text-centered mt-6">
           <button 
             className="button is-primary"
             onClick={() => window.history.back()}
           >
+            
             Back to Shows
           </button>
         </div>
