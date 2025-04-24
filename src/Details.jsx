@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { svrURL } from './constants';
 import { AfficherActeurs } from './AffichageActeur';
-import { AfficherSaison } from './Saison';
+import { AfficherSaison } from './AffichageSaison';
 
 export function Details() {
   const { id } = useParams();
