@@ -1,95 +1,79 @@
 import { useEffect, useRef } from 'react';
 
-export function Pagination({ 
-  currentPage, 
-  totalItems, 
-  itemsPerPage, 
+// Pagination.jsx
+export function Pagination({
+  currentPage,
+  totalItems,
+  itemsPerPage,
   onPageChange,
-  onItemsPerPageChange 
+  onItemsPerPageChange
 }) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const pageNumbers = [];
 
-  const selectRef = useRef(null);
-
-  // Sauvegarder dans localStorage
-  useEffect(() => {
-    localStorage.setItem('itemsPerPage', itemsPerPage.toString());
-  }, [itemsPerPage]);
-
-  // Charger depuis localStorage
-  useEffect(() => {
-    const savedItemsPerPage = localStorage.getItem('itemsPerPage');
-    if (savedItemsPerPage && [4, 8, 12, 16].includes(Number(savedItemsPerPage))) {
-      onItemsPerPageChange(Number(savedItemsPerPage));
-    }
-  }, []);
-
+  // Generate page numbers
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
 
   return (
-    <nav 
-      className="pagination is-centered" 
-      role="navigation" 
-      aria-label="Pagination Navigation"
-    >
-      <button
-        className="pagination-previous"
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        aria-disabled={currentPage === 1}
-        aria-label="Page précédente"
-      >
-        Précédent
-      </button>
-
-      <button
-        className="pagination-next"
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        aria-disabled={currentPage === totalPages}
-        aria-label="Page suivante"
-      >
-        Suivant
-      </button>
-      
-      <ul className="pagination-list" role="list">
-        {pageNumbers.map(number => (
-          <li key={number} role="listitem">
-            <button
-              className={`pagination-link ${currentPage === number ? 'is-current' : ''}`}
-              aria-label={`Aller à la page ${number}`}
-              aria-current={currentPage === number ? "page" : undefined}
-              onClick={() => onPageChange(number)}
-            >
-              {number}
-            </button>
-          </li>
-        ))}
-      </ul>
-      
-      <div className="field has-addons is-pulled-right" role="group" aria-label="Changer le nombre d'éléments par page">
+    <div className="pagination-container">
+      {/* Select number of items per page */}
+      <div className="field is-grouped is-justify-content-center mb-4">
         <div className="control">
-          <span className="select">
+          <div className="select">
             <select
               id="itemsPerPageSelect"
-              ref={selectRef}
               value={itemsPerPage}
               onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-              aria-required="true"
-              aria-describedby="itemsPerPageLabel"
+              aria-label="Sélectionner le nombre d'épisodes par page"
             >
-              {[4, 8, 12, 16].map(option => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
+              <option value={4}>4</option>
+              <option value={8}>8</option>
+              <option value={12}>12</option>
+              <option value={16}>16</option>
             </select>
-          </span>
+          </div>
         </div>
       </div>
-    </nav>
+
+      {/* Pagination navigation */}
+      <nav className="pagination is-centered" role="navigation" aria-label="Pagination Navigation">
+        <button
+          className="pagination-previous"
+          onClick={() => onPageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          aria-disabled={currentPage === 1}
+          aria-label="Page précédente"
+        >
+          Précédent
+        </button>
+
+        <button
+          className="pagination-next"
+          onClick={() => onPageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          aria-disabled={currentPage === totalPages}
+          aria-label="Page suivante"
+        >
+          Suivant
+        </button>
+
+        <ul className="pagination-list" role="list">
+          {pageNumbers.map((number) => (
+            <li key={number} role="listitem">
+              <button
+                className={`pagination-link ${currentPage === number ? 'is-current' : ''}`}
+                aria-label={`Aller à la page ${number}`}
+                aria-current={currentPage === number ? 'page' : undefined}
+                onClick={() => onPageChange(number)}
+              >
+                {number}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
   );
 }
