@@ -12,7 +12,7 @@ export function Login() {
     const { login } = useAuth();
     const [searchParams] = useSearchParams();
 
-    // Auto-remplir si username dans l'URL
+
     useEffect(() => {
         const prefill = searchParams.get("username");
         if (prefill) {
