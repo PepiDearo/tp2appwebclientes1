@@ -35,7 +35,7 @@ export function AfficherSaison({ seasons }) {
             aria-labelledby={`season-${season.number}-title season-${season.number}-episodes`}
           >
             <Link 
-              to={`/saison/${season.number}`}
+              to={`/saison/${season.seasonId}`}
               aria-label={`Voir les détails de la saison ${season.number}`}
               style={{ textDecoration: 'none', color: 'inherit' }}
             >
