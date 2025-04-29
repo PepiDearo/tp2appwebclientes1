@@ -1,4 +1,4 @@
-// AffichageEpisode.jsx
+
 export function AffichageEpisode({ episode }) {
     return (
       <div className="column is-3-desktop is-4-tablet is-6-mobile">
