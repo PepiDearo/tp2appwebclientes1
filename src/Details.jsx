@@ -110,7 +110,7 @@ export function Details() {
             onClick={() => window.history.back()}
           >
 
-            Back to Shows
+            Retour
           </button>
         </div>
       </div>
