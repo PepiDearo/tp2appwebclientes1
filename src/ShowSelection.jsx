@@ -1,10 +1,10 @@
-
-
 export function ShowSelection({ onSearch }) {
     return (
-        <div className="field is-horizontal">
+        <div className="field is-horizontal" role="group" aria-labelledby="showSelectionLabel">
             <div className="field-label is-normal">
-                <label htmlFor="showTitle" className="label">Titre</label>
+                <label id="showSelectionLabel" htmlFor="showTitle" className="label">
+                    Titre
+                </label>
             </div>
             <div className="field-body">
                 <div className="field">
@@ -14,8 +14,11 @@ export function ShowSelection({ onSearch }) {
                             className="input" 
                             type="text" 
                             placeholder="Entrer le nom" 
+                            aria-required="true" 
+                            aria-describedby="showSelectionHelp"
                             onChange={(e) => onSearch(e.target.value)}
                         />
+                        
                     </p>
                 </div>
             </div>

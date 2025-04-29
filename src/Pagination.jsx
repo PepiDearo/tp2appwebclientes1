@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function Pagination({ 
   currentPage, 
@@ -9,6 +9,8 @@ export function Pagination({
 }) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const pageNumbers = [];
+
+  const selectRef = useRef(null);
 
   // Sauvegarder dans localStorage
   useEffect(() => {
@@ -28,28 +30,38 @@ export function Pagination({
   }
 
   return (
-    <nav className="pagination is-centered" role="navigation" aria-label="pagination">
+    <nav 
+      className="pagination is-centered" 
+      role="navigation" 
+      aria-label="Pagination Navigation"
+    >
       <button
         className="pagination-previous"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
+        aria-disabled={currentPage === 1}
+        aria-label="Page précédente"
       >
         Précédent
       </button>
+
       <button
         className="pagination-next"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
+        aria-disabled={currentPage === totalPages}
+        aria-label="Page suivante"
       >
         Suivant
       </button>
       
-      <ul className="pagination-list">
+      <ul className="pagination-list" role="list">
         {pageNumbers.map(number => (
-          <li key={number}>
+          <li key={number} role="listitem">
             <button
               className={`pagination-link ${currentPage === number ? 'is-current' : ''}`}
-              aria-label={`Page ${number}`}
+              aria-label={`Aller à la page ${number}`}
+              aria-current={currentPage === number ? "page" : undefined}
               onClick={() => onPageChange(number)}
             >
               {number}
@@ -58,15 +70,21 @@ export function Pagination({
         ))}
       </ul>
       
-      <div className="field has-addons is-pulled-right">
+      <div className="field has-addons is-pulled-right" role="group" aria-label="Changer le nombre d'éléments par page">
         <div className="control">
           <span className="select">
             <select
+              id="itemsPerPageSelect"
+              ref={selectRef}
               value={itemsPerPage}
               onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
+              aria-required="true"
+              aria-describedby="itemsPerPageLabel"
             >
               {[4, 8, 12, 16].map(option => (
-                <option key={option} value={option}>{option}</option>
+                <option key={option} value={option}>
+                  {option}
+                </option>
               ))}
             </select>
           </span>

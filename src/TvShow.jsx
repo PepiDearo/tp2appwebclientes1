@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 export function TvShow(props) {
   return (
     <div className="column is-3-desktop is-4-tablet is-6-mobile">
+      
       <Link to={`/details/${props.tvShow.tvshowId}`}>
         <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           <div className="card-image">

@@ -16,7 +16,6 @@ export function Home() {
     return saved ? Number(saved) : 8;
   });
 
-
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedStudio, searchTerm]);
@@ -45,12 +44,10 @@ export function Home() {
   function filterShows() {
     let filtered = tvShows;
     
-    // Filtre par studio
     if (selectedStudio) {
       filtered = filtered.filter(show => show.studio?.name === selectedStudio);
     }
     
-    // Filtre par recherche
     if (searchTerm) {
       filtered = filtered.filter(show => 
         show.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -61,33 +58,38 @@ export function Home() {
   }
 
   const filteredShows = filterShows();
-  const totalPages = Math.ceil(filteredShows.length / itemsPerPage);
   const paginatedShows = filteredShows.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
 
   return (
-    <section className="section">
+    <main className="section" aria-labelledby="page-title">
       <div className="container">
-        <h1 className="title has-text-centered">TV Shows</h1>
+        <h1 id="page-title" className="title has-text-centered">TV Shows</h1>
 
         <div className="columns">
           <div className="column is-half">
-            <ShowSelection onSearch={setSearchTerm} />
+            <ShowSelection onSearch={setSearchTerm} aria-label="Search TV shows" />
           </div>
           <div className="column is-half">
             <StudioDropdown 
               studios={studios.map(studio => studio.name)} 
               selectedStudio={selectedStudio}
               onStudioChange={setSelectedStudio}
+              aria-label="Filter by studio"
             />
           </div>
         </div>
 
-        <div className="columns is-multiline">
+        
+        <div className="columns is-multiline" role="list" aria-label="TV shows list">
           {paginatedShows.map((show) => (
-            <TvShow key={show.tvshowId} tvShow={show} />
+            <TvShow 
+              key={show.tvshowId} 
+              tvShow={show}
+              role="listitem" 
+            />
           ))}
         </div>
 
@@ -104,6 +106,6 @@ export function Home() {
           />
         )}
       </div>
-    </section>
+    </main>
   );
 }

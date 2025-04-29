@@ -1,9 +1,10 @@
-
 export function StudioDropdown({ studios, selectedStudio, onStudioChange }) {
     return (
-        <div className="field is-horizontal">
+        <div className="field is-horizontal" role="group" aria-labelledby="studioDropdownLabel">
             <div className="field-label is-normal">
-                <label className="label" htmlFor="studios">Studio</label>
+                <label id="studioDropdownLabel" className="label" htmlFor="studios">
+                    Studio
+                </label>
             </div>
             <div className="field-body">
                 <div className="field">
@@ -13,10 +14,12 @@ export function StudioDropdown({ studios, selectedStudio, onStudioChange }) {
                                 id="studios" 
                                 value={selectedStudio}
                                 onChange={(e) => onStudioChange(e.target.value)}
+                                aria-required="true"
+                                aria-describedby="studioDropdownHelp"
                             >
                                 <option value=""></option>
                                 {studios.map((studio) => (
-                                    <option key={studio} value={studio.name}>
+                                    <option key={studio} value={studio}>
                                         {studio}
                                     </option>
                                 ))}
