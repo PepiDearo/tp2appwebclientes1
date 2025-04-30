@@ -6,6 +6,7 @@ import { Menu } from './Menu';
 import { Signup } from './Signup';
 import { Login } from './Login';
 import { AuthProvider } from './AuthContext';
+import { JouerEpisode } from './JouerEpisode';
 import 'bulma/css/bulma.min.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/saison/:seasonId" element={<Saison />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/jouer/:episodeId" element={<JouerEpisode />} />
           </Routes>
         </div>
       </Router>

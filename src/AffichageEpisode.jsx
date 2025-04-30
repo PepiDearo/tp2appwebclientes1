@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom';
 
 export function AffichageEpisode({ episode }) {
-    return (
-      <div className="column is-3-desktop is-4-tablet is-6-mobile">
-        <div className="card">
+  return (
+    <div className="column is-3-desktop is-4-tablet is-6-mobile">
+      <Link to={`/jouer/${episode.episodeId}`}>
+        <div className="card" style={{ height: '100%' }}>
           <div className="card-image">
             <figure className="image is-16by9">
               <img src={episode.imgURL} alt={episode.title} />
@@ -13,7 +15,7 @@ export function AffichageEpisode({ episode }) {
             <p>{episode.number}</p>
           </div>
         </div>
-      </div>
-    );
-  }
-  
+      </Link>
+    </div>
+  );
+}
