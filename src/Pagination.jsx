@@ -1,43 +1,38 @@
 import { useEffect, useRef } from 'react';
 
-// Pagination.jsx
 export function Pagination({
   currentPage,
   totalItems,
   itemsPerPage,
   onPageChange,
-  onItemsPerPageChange
+  onItemsPerPageChange // optional
 }) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
-  const pageNumbers = [];
-
-  // Generate page numbers
-  for (let i = 1; i <= totalPages; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div className="pagination-container">
-      {/* Select number of items per page */}
-      <div className="field is-grouped is-justify-content-center mb-4">
-        <div className="control">
-          <div className="select">
-            <select
-              id="itemsPerPageSelect"
-              value={itemsPerPage}
-              onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
-              aria-label="Sélectionner le nombre d'épisodes par page"
-            >
-              <option value={4}>4</option>
-              <option value={8}>8</option>
-              <option value={12}>12</option>
-              <option value={16}>16</option>
-            </select>
+      {/* Only render the selector if the handler is provided */}
+      {onItemsPerPageChange && (
+        <div className="field is-grouped is-justify-content-center mb-4">
+          <div className="control">
+            <div className="select">
+              <select
+                id="itemsPerPageSelect"
+                value={itemsPerPage}
+                onChange={(e) => onItemsPerPageChange(Number(e.target.value))}
+                aria-label="Sélectionner le nombre d'éléments par page"
+              >
+                <option value={4}>4</option>
+                <option value={8}>8</option>
+                <option value={12}>12</option>
+                <option value={16}>16</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* Pagination navigation */}
       <nav className="pagination is-centered" role="navigation" aria-label="Pagination Navigation">
         <button
           className="pagination-previous"
