@@ -13,10 +13,10 @@ export function Menu() {
     const isAuthenticated = !!token;
 
     return (
-        <nav className="navbar" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-link" role="navigation" aria-label="main navigation">
             <div className="navbar-menu">
                 <div className="navbar-start">
-                    <Link to="/" className="navbar-item">
+                    <Link to="/" className="navbar-item has-text-white">
                         TP2
                     </Link>
                 </div>
@@ -24,15 +24,15 @@ export function Menu() {
                 <div className="navbar-end">
                     {isAuthenticated ? (
                         <>
-                            <Link to="/history" className="navbar-item">
-                            History
+                            <Link to="/history" className="navbar-item has-text-white">
+                                History
                             </Link>
-                            <Link to="/profile" className="navbar-item">
+                            <Link to="/profile" className="navbar-item has-text-white">
                                 Profile
                             </Link>
                             <button 
                                 onClick={handleLogout} 
-                                className="navbar-item"
+                                className="navbar-item has-text-white"
                                 aria-label="Logout"
                             >
                                 Logout
@@ -40,16 +40,16 @@ export function Menu() {
                         </>
                     ) : (
                         <>
-                            <Link to="/signup" className="navbar-item">
+                            <Link to="/signup" className="navbar-item has-text-white">
                                 Signup
                             </Link>
-                            <Link to="/login" className="navbar-item">
+                            <Link to="/login" className="navbar-item has-text-white">
                                 Login
                             </Link>
                         </>
                     )}
 
-                    <Link to="/about" className="navbar-item">
+                    <Link to="/about" className="navbar-item has-text-white">
                         About
                     </Link>
                 </div>
