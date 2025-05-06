@@ -7,6 +7,8 @@ import { Details } from './Details'; // Details page component
 import { Saison } from './Saison'; // Season page component
 import { Historique } from './History'; // Watch history page component
 import { JouerEpisode } from './JouerEpisode'; // Play episode page component
+import {Login} from './Login'
+import {Signup} from './Signup'
 import 'bulma/css/bulma.min.css'; // Bulma CSS
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
             <Menu />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/Signup" element={<Signup />} />
               <Route path="/details/:id" element={<Details />} />
               <Route path="/saison/:seasonId" element={<Saison />} />
               <Route path="/history" element={<Historique />} /> {/* Corrected to History */}
