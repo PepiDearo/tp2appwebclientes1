@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-export function AffichageEpisode({ episode }) {
+export function AffichageEpisode({ episode, isWatched }) {
   return (
-    <div className="column is-3-desktop is-4-tablet is-6-mobile">
+    <div className={`column is-3-desktop is-4-tablet is-6-mobile ${isWatched ? 'has-text-grey-light' : ''}`}>
       <Link to={`/jouer/${episode.episodeId}`}>
         <div className="card" style={{ height: '100%' }}>
           <div className="card-image">

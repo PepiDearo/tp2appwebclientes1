@@ -1,30 +1,31 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home } from './Home';
-import { Details } from './Details';
-import { Saison } from './Saison';
-import { Menu } from './Menu';
-import { Signup } from './Signup';
-import { Login } from './Login';
-import { AuthProvider } from './AuthContext';
-import { JouerEpisode } from './JouerEpisode';
-import 'bulma/css/bulma.min.css';
+import { AuthProvider } from './AuthContext'; // AuthProvider context
+import { HistoryProvider } from './HistoryContext'; // HistoryProvider context
+import { Menu } from './Menu'; // Menu component
+import { Home } from './Home'; // Home component
+import { Details } from './Details'; // Details page component
+import { Saison } from './Saison'; // Season page component
+import { Historique } from './History'; // Watch history page component
+import { JouerEpisode } from './JouerEpisode'; // Play episode page component
+import 'bulma/css/bulma.min.css'; // Bulma CSS
 
 function App() {
   return (
     <AuthProvider>
-      <Router>
-        <div className="App">
-          <Menu />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/details/:id" element={<Details />} />
-            <Route path="/saison/:seasonId" element={<Saison />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/jouer/:episodeId" element={<JouerEpisode />} />
-          </Routes>
-        </div>
-      </Router>
+      <HistoryProvider> {/* Wrap app with HistoryProvider */}
+        <Router>
+          <div className="App">
+            <Menu />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/details/:id" element={<Details />} />
+              <Route path="/saison/:seasonId" element={<Saison />} />
+              <Route path="/history" element={<Historique />} /> {/* Corrected to History */}
+              <Route path="/jouer/:episodeId" element={<JouerEpisode />} />
+            </Routes>
+          </div>
+        </Router>
+      </HistoryProvider>
     </AuthProvider>
   );
 }
