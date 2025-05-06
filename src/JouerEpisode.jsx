@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { svrURL } from './constants';
+import { useHistory } from './HistoryContext'; // ✅ Import context
 
 export function JouerEpisode() {
   const { episodeId } = useParams();
   const [videoURL, setVideoURL] = useState('');
   const [error, setError] = useState('');
-
+  const { addToHistory } = useHistory(); // ✅ use context
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -29,13 +30,16 @@ export function JouerEpisode() {
 
         const data = await response.json();
         setVideoURL(data.videoURL);
+
+        // ✅ Mark episode as watched
+        addToHistory(Number(episodeId));
       } catch (err) {
         setError(err.message);
       }
     };
 
     fetchVideoData();
-  }, [episodeId, token]);
+  }, [episodeId, token, addToHistory]);
 
   if (error) {
     return (
@@ -46,9 +50,7 @@ export function JouerEpisode() {
     );
   }
 
-  if (!videoURL) {
-    return null;
-  }
+  if (!videoURL) return null;
 
   return (
     <section className="section">

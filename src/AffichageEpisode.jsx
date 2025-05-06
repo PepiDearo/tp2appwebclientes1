@@ -2,9 +2,16 @@ import { Link } from 'react-router-dom';
 
 export function AffichageEpisode({ episode, isWatched }) {
   return (
-    <div className={`column is-3-desktop is-4-tablet is-6-mobile ${isWatched ? 'has-text-grey-light' : ''}`}>
+    <div className="column is-3-desktop is-4-tablet is-6-mobile">
       <Link to={`/jouer/${episode.episodeId}`}>
-        <div className="card" style={{ height: '100%' }}>
+        <div
+          className="card"
+          style={{
+            height: '100%',
+            filter: isWatched ? 'grayscale(100%) brightness(0.6)' : 'none', // 💪 More visibly grey
+            pointerEvents: 'auto',
+          }}
+        >
           <div className="card-image">
             <figure className="image is-16by9">
               <img src={episode.imgURL} alt={episode.title} />
