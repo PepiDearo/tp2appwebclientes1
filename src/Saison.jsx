@@ -62,17 +62,15 @@ export function Saison() {
         <div className="columns is-multiline" role="region" aria-live="polite" aria-label="List of episodes">
           {!isLoadingHistory &&
             currentEpisodes.map((ep) => {
-              const isWatched = history.some((item) => item.episodeId === ep.episodeId);
-
-              
-              const episodeClass = token && isWatched ? 'episode-card is-watched' : 'episode-card';
-
+              const isWatched = token && history.some((item) => item.episodeId === ep.episodeId);
+              const episodeClass = isWatched ? 'episode-card is-watched' : 'episode-card';
+            
               return (
                 <AffichageEpisode
                   key={ep.episodeId}
                   episode={ep}
                   isWatched={isWatched}
-                  className={episodeClass} 
+                  className={episodeClass}
                 />
               );
             })}
