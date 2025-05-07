@@ -19,7 +19,7 @@ export function About() {
         <ul aria-describedby="about-desc-2">
           <li>Le cours est pas mal bon, pas vraiment besoin d'améliorations</li>
           <li>Selon moi, il devrait peut-être avoir une section sur Léa avec les exercices corrigés ou les TP</li>
-          <li>Idée 3</li>
+          <li>Peut etre plus d'exemples interactifs pour la matiere?</li>
         </ul>
         
 
