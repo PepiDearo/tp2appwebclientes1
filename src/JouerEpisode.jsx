@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { svrURL } from './constants';
-import { useHistory } from './HistoryContext'; // ✅ Import context
+import { useHistory } from './HistoryContext'; 
 
 export function JouerEpisode() {
   const { episodeId } = useParams();
   const [videoURL, setVideoURL] = useState('');
   const [error, setError] = useState('');
-  const { addToHistory } = useHistory(); // ✅ use context
+  const { addToHistory } = useHistory(); 
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -31,7 +31,6 @@ export function JouerEpisode() {
         const data = await response.json();
         setVideoURL(data.videoURL);
 
-        // ✅ Mark episode as watched
         addToHistory(Number(episodeId));
       } catch (err) {
         setError(err.message);
@@ -43,9 +42,9 @@ export function JouerEpisode() {
 
   if (error) {
     return (
-      <div className="has-text-centered">
+      <div className="has-text-centered" aria-live="assertive">
         <h1 className="has-text-danger is-size-2 mb-4">{error}</h1>
-        <Link to="/login">Se connecter</Link>
+        <Link to="/login" aria-label="Se connecter pour accéder à la vidéo">Se connecter</Link>
       </div>
     );
   }
@@ -56,7 +55,7 @@ export function JouerEpisode() {
     <section className="section">
       <div className="container has-text-centered">
         <h1 className="title is-3">Lecture de l'épisode</h1>
-        <video width="100%" controls>
+        <video width="100%" controls aria-label="Lecteur vidéo de l'épisode">
           <source src={videoURL} type="video/mp4" />
           Votre navigateur ne supporte pas la lecture vidéo.
         </video>

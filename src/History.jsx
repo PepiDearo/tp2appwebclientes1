@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from './AuthContext'; // Import the useAuth hook
+import { useAuth } from './AuthContext';
 import { Link } from 'react-router-dom';
 import { svrURL } from './constants';
 import { Pagination } from './Pagination';
 
 export function Historique() {
-  const { token } = useAuth(); // Access token from AuthContext
+  const { token } = useAuth();
   const [history, setHistory] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
   useEffect(() => {
     const fetchHistory = async () => {
-      if (!token) return; // If no token, return early
+      if (!token) return;
 
       try {
         const response = await fetch(`${svrURL}/user/history`, {
@@ -22,7 +22,7 @@ export function Historique() {
         });
 
         if (!response.ok) {
-          throw new Error('Impossible de récupérer l\'historique');
+          throw new Error("Impossible de récupérer l'historique");
         }
 
         const data = await response.json();
@@ -40,32 +40,47 @@ export function Historique() {
   const currentHistory = history.slice(indexOfFirst, indexOfLast);
 
   return (
-    <section className="section">
+    <section className="section" role="region" aria-labelledby="history-title">
       <div className="container">
-        <h1 className="title is-2 has-text-centered">Historique de visionnement</h1>
+        <h1 id="history-title" className="title is-2 has-text-centered">
+          Historique
+        </h1>
 
-        <div className="columns is-multiline">
+        <div className="columns is-multiline" role="list" aria-label="Liste des épisodes visionnés">
           {currentHistory.map((episode) => (
-            <div key={episode.episodeId} className="column is-4-tablet is-6-mobile">
+            <div
+              key={episode.episodeId}
+              className="column is-4-tablet is-6-mobile"
+              role="listitem"
+              aria-describedby={`desc-${episode.episodeId}`}
+            >
               <div className="card">
                 <div className="card-image">
                   <figure className="image is-16by9">
-                    <Link to={`/jouer/${episode.episodeId}`}>
-                      <img src={episode.imgURL} alt={episode.title} />
+                    <Link to={`/jouer/${episode.episodeId}`} aria-label={`Rejouer l'épisode ${episode.title}`}>
+                      <img
+                        src={episode.imgURL}
+                        alt={`Image de l'épisode ${episode.title}`}
+                      />
                     </Link>
                   </figure>
                 </div>
-                <div className="card-content">
+                <div className="card-content" id={`desc-${episode.episodeId}`}>
                   <h3 className="title is-5">{episode.title}</h3>
-                  <p>{episode.number}</p>
                   <p>
-                    <Link to={`/show/${episode.showId}`}>Série: {episode.tvshowTitle}</Link>
+                    <Link to={`/details/${episode.tvshowId}`}>
+                      Série : {episode.tvshowTitle}
+                    </Link>
                   </p>
                   <p>
-                    <Link to={`/season/${episode.seasonId}`}>Saison {episode.seasonNumber}</Link>
+                    <Link to={`/saison/${episode.seasonId}`}>
+                      Saison {episode.seasonNumber}
+                    </Link>
                   </p>
                   <p>
-                    <Link to={`/jouer/${episode.episodeId}`}>Voir l'épisode</Link>
+                    <Link to={`/jouer/${episode.episodeId}`}>
+                      {episode.episodeTitle}
+                    </Link>
                   </p>
                 </div>
               </div>

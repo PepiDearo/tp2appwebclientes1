@@ -1,18 +1,18 @@
-import { useEffect, useRef } from 'react';
+
 
 export function Pagination({
   currentPage,
   totalItems,
   itemsPerPage,
   onPageChange,
-  onItemsPerPageChange // optional
+  onItemsPerPageChange 
 }) {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div className="pagination-container">
-      {/* Only render the selector if the handler is provided */}
+      
       {onItemsPerPageChange && (
         <div className="field is-grouped is-justify-content-center mb-4">
           <div className="control">

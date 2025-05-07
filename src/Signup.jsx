@@ -1,52 +1,44 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { sha1 } from "./sha1";  // Import the sha1 function from sha1.js
+import { sha1 } from "./sha1";  
 import { svrURL } from './constants';
 
 export function Signup() {
     const navigate = useNavigate();
 
-    // State for form fields
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    // Error state (array of error messages)
     const [errorMessages, setErrorMessages] = useState([]);
     const errorMessageRef = useRef(null);
 
-    // Focus on the error message div when it changes
     useEffect(() => {
         if (errorMessageRef.current && errorMessages.length > 0) {
             errorMessageRef.current.focus();
         }
     }, [errorMessages]);
 
-    // Function to check if the password is compromised using the pwnedpasswords API
     const isPasswordCompromised = async (password) => {
-        const hashedPassword = await sha1(password); // Get SHA-1 hash of the password
-        const firstFiveChars = hashedPassword.slice(0, 5); // Extract the first 5 characters
-        const restOfHash = hashedPassword.slice(5).toUpperCase(); // Extract the rest of the hash (uppercase)
+        const hashedPassword = await sha1(password); 
+        const firstFiveChars = hashedPassword.slice(0, 5); 
+        const restOfHash = hashedPassword.slice(5).toUpperCase(); 
 
-        // Call pwnedpasswords API to check if the password is compromised
         const response = await fetch(`https://api.pwnedpasswords.com/range/${firstFiveChars}`);
         const data = await response.text();
 
-        // Check if the hash exists in the response
         const isCompromised = data.includes(restOfHash);
         return isCompromised;
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErrorMessages([]); // Reset error messages
+        setErrorMessages([]); 
 
         let isValid = true;
         let errors = [];
 
-        // Validate email
         const rEmailSymbole = /@/;
         if (!rEmailSymbole.test(email)) {
             errors.push("Le courriel doit contenir le symbole @.");
@@ -58,7 +50,6 @@ export function Signup() {
             isValid = false;
         }
 
-        // Validate username
         if (!username.trim()) {
             errors.push("Le username est obligatoire.");
             isValid = false;
@@ -76,7 +67,6 @@ export function Signup() {
             isValid = false;
         }
 
-        // Validate password
         const passwordRegex = /[!@#$%&*]/;
         if (!passwordRegex.test(password)) {
             errors.push("Le mot de passe doit inclure l'un des caractères suivants: !@#$%&*.");
@@ -89,25 +79,21 @@ export function Signup() {
             isValid = false;
         }
 
-        // Password confirmation
         if (password !== confirmPassword) {
             errors.push("Les mots de passe ne correspondent pas.");
             isValid = false;
         }
 
-        // Check if password is compromised
         if (await isPasswordCompromised(password)) {
             errors.push("Le mot de passe est compromis. Veuillez en choisir un autre.");
             isValid = false;
         }
 
-        // If validation failed, set the error messages
         if (!isValid) {
             setErrorMessages(errors);
             return;
         }
 
-        // Send registration request
         try {
             const response = await fetch(`${svrURL}/auth/register`, {
                 method: "POST",
@@ -118,7 +104,6 @@ export function Signup() {
             });
 
             if (response.status === 201) {
-                // Redirect to Login page with the username pre-filled
                 navigate(`/login?username=${username}`);
             } else {
                 const data = await response.json();
@@ -129,7 +114,6 @@ export function Signup() {
         }
     };
 
-    // Handle cancel
     const handleCancel = () => {
         setUsername("");
         setEmail("");
@@ -140,9 +124,8 @@ export function Signup() {
 
     return (
         <div className="container">
-            <h1 className="title">Inscription</h1>
+            <h1 className="title" role="heading" aria-level="1">Inscription</h1>
 
-            {/* Error messages */}
             {errorMessages.length > 0 && (
                 <div className="notification is-danger" role="alert" aria-live="assertive" ref={errorMessageRef}>
                     {errorMessages.map((msg, index) => (
@@ -152,7 +135,6 @@ export function Signup() {
             )}
 
             <form onSubmit={handleSubmit}>
-                {/* Email input */}
                 <div className="field">
                     <label htmlFor="email" className="label">Email</label>
                     <div className="control has-icons-left">
@@ -164,6 +146,7 @@ export function Signup() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             aria-required="true"
+                            aria-describedby="emailHelp"
                         />
                         <span className="icon is-small is-left">
                             <i className="fa fa-envelope"></i>
@@ -171,7 +154,6 @@ export function Signup() {
                     </div>
                 </div>
 
-                {/* Username input */}
                 <div className="field">
                     <label htmlFor="username" className="label">Username</label>
                     <div className="control has-icons-left">
@@ -183,6 +165,7 @@ export function Signup() {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             aria-required="true"
+                            aria-describedby="usernameHelp"
                         />
                         <span className="icon is-small is-left">
                             <i className="fa fa-user"></i>
@@ -190,7 +173,6 @@ export function Signup() {
                     </div>
                 </div>
 
-                {/* Password input */}
                 <div className="field">
                     <label htmlFor="password" className="label">Mot de passe</label>
                     <div className="control has-icons-left">
@@ -202,6 +184,7 @@ export function Signup() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             aria-required="true"
+                            aria-describedby="passwordHelp"
                         />
                         <span className="icon is-small is-left">
                             <i className="fa fa-lock"></i>
@@ -209,7 +192,6 @@ export function Signup() {
                     </div>
                 </div>
 
-                {/* Confirm Password input */}
                 <div className="field">
                     <label htmlFor="confirmPassword" className="label">Confirmer le mot de passe</label>
                     <div className="control has-icons-left">
@@ -221,6 +203,7 @@ export function Signup() {
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             aria-required="true"
+                            aria-describedby="confirmPasswordHelp"
                         />
                         <span className="icon is-small is-left">
                             <i className="fa fa-lock"></i>

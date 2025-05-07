@@ -1,32 +1,38 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { AuthProvider } from './AuthContext'; // AuthProvider context
-import { HistoryProvider } from './HistoryContext'; // HistoryProvider context
-import { Menu } from './Menu'; // Menu component
-import { Home } from './Home'; // Home component
-import { Details } from './Details'; // Details page component
-import { Saison } from './Saison'; // Season page component
-import { Historique } from './History'; // Watch history page component
-import { JouerEpisode } from './JouerEpisode'; // Play episode page component
-import {Login} from './Login'
-import {Signup} from './Signup'
-import 'bulma/css/bulma.min.css'; // Bulma CSS
+import { AuthProvider } from './AuthContext';
+import { HistoryProvider } from './HistoryContext'; 
+import { Menu } from './Menu';
+import { Home } from './Home';
+import { Details } from './Details';
+import { Saison } from './Saison'; 
+import { Historique } from './History'; 
+import { JouerEpisode } from './JouerEpisode';
+import { Login } from './Login';
+import { Signup } from './Signup';
+import { About } from './About';
+import { Profile } from './Profile';
+import { Footer } from './Footer';
+import 'bulma/css/bulma.min.css';
 
 function App() {
   return (
     <AuthProvider>
-      <HistoryProvider> {/* Wrap app with HistoryProvider */}
+      <HistoryProvider>
         <Router>
           <div className="App">
-            <Menu />
+            <Menu aria-label="Navigation Menu" />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/Signup" element={<Signup />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="/details/:id" element={<Details />} />
               <Route path="/saison/:seasonId" element={<Saison />} />
-              <Route path="/history" element={<Historique />} /> {/* Corrected to History */}
+              <Route path="/history" element={<Historique />} />
               <Route path="/jouer/:episodeId" element={<JouerEpisode />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
+            <Footer aria-label="Site footer" />
           </div>
         </Router>
       </HistoryProvider>

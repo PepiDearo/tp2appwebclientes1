@@ -1,4 +1,4 @@
-// HistoryContext.js
+
 import { createContext, useContext, useState, useEffect } from 'react';
 import { svrURL } from './constants';
 
@@ -28,7 +28,7 @@ export function HistoryProvider({ children }) {
     fetchHistory();
   }, []);
 
-  // ✅ NEW: Add watched episode dynamically
+  
   const addToHistory = (episodeId) => {
     setHistory((prev) => {
       if (!prev.some((item) => item.episodeId === episodeId)) {

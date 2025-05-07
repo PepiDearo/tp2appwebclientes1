@@ -7,10 +7,7 @@ export function AfficherActeurs({ roles }) {
       aria-labelledby="acteurs-section-title"
       role="region"
     >
-      <h2
-        id="acteurs-section-title"
-        className="is-sr-only"
-      >
+      <h2 id="acteurs-section-title" className="is-sr-only">
         Distribution des acteurs
       </h2>
 

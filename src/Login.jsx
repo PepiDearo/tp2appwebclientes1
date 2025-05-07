@@ -12,7 +12,6 @@ export function Login() {
     const { login } = useAuth();
     const [searchParams] = useSearchParams();
 
-
     useEffect(() => {
         const prefill = searchParams.get("username");
         if (prefill) {
@@ -48,7 +47,7 @@ export function Login() {
 
             if (response.ok) {
                 const data = await response.json();
-                login(data.token); // sauve dans le contexte + localStorage
+                login(data.token);
                 navigate("/");
             } else {
                 setErrorMessages(["Mauvaise authentification."]);
@@ -92,11 +91,15 @@ export function Login() {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             aria-required="true"
+                            aria-describedby="usernameError"
                         />
                         <span className="icon is-left">
                             <i className="fa fa-user"></i>
                         </span>
                     </div>
+                    {errorMessages.some(msg => msg.includes("username")) && (
+                        <p id="usernameError" className="help is-danger">Le username est obligatoire.</p>
+                    )}
                 </div>
 
                 {/* Password */}
@@ -111,11 +114,15 @@ export function Login() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             aria-required="true"
+                            aria-describedby="passwordError"
                         />
                         <span className="icon is-left">
                             <i className="fa fa-lock"></i>
                         </span>
                     </div>
+                    {errorMessages.some(msg => msg.includes("mot de passe")) && (
+                        <p id="passwordError" className="help is-danger">Le mot de passe est obligatoire.</p>
+                    )}
                 </div>
 
                 <div className="buttons">

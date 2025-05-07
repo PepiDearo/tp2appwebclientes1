@@ -2,15 +2,18 @@ import { Link } from "react-router-dom";
 
 export function TvShow(props) {
   return (
-    <div className="column is-3-desktop is-4-tablet is-6-mobile">
+    <div className="column is-3-desktop is-4-tablet is-6-mobile" role="article">
       
-      <Link to={`/details/${props.tvShow.tvshowId}`}>
+      <Link 
+        to={`/details/${props.tvShow.tvshowId}`} 
+        aria-label={`Voir les détails de ${props.tvShow.title}`}
+      >
         <div className="card" style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
           <div className="card-image">
             <figure className="image is-3by4">
               <img 
                 src={props.tvShow.imgURL} 
-                alt={props.tvShow.title}
+                alt={`Affiche de ${props.tvShow.title}`} 
                 style={{
                   objectFit: 'cover',
                   width: '100%',
