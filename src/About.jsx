@@ -21,6 +21,15 @@ export function About() {
           <li>Selon moi, il devrait peut-être avoir une section sur Léa avec les exercices corrigés ou les TP</li>
           <li>Peut etre plus d'exemples interactifs pour la matiere?</li>
         </ul>
+
+
+        <h1 className="subtitle mt-5" id="commentaires-title">
+          Commentaires pas en lien avec ce qui est demandé dans les énoncés
+        </h1>
+        <ul aria-describedby="about-desc-2">
+          <li>Pour x raison, il faut refresh la page pour que les episodes soient grises</li>
+          
+        </ul>
         
 
       </div>
