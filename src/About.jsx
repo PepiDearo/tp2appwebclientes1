@@ -27,7 +27,7 @@ export function About() {
           Commentaires pas en lien avec ce qui est demandé dans les énoncés
         </h1>
         <ul aria-describedby="about-desc-2">
-          <li>Pour x raison, il faut refresh la page pour que les episodes soient grises</li>
+          <li>Pour x raison, il faut refresh la page pour que les episodes soient grises, mais lorsqu'on deploie on recoie un erreur qui dit: "The resource you are looking for has been removed, had its name changed, or is temporarily unavailable. "</li>
           
         </ul>
         
