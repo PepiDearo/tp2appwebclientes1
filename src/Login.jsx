@@ -52,7 +52,7 @@ export function Login() {
             } else {
                 setErrorMessages(["Mauvaise authentification."]);
             }
-        } catch (err) {
+        } catch{
             setErrorMessages(["Erreur de connexion au serveur."]);
         }
     };
