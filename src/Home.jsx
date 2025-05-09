@@ -66,7 +66,7 @@ export function Home() {
   return (
     <main className="section" aria-labelledby="page-title">
       <div className="container">
-        <h1 id="page-title" className="title has-text-centered">TV Shows</h1>
+        <h1 id="page-title" className="title has-text-centered">Les téléséries disponibles</h1>
 
         <div className="columns">
           <div className="column is-half">

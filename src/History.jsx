@@ -69,7 +69,7 @@ export function Historique() {
                   <h3 className="title is-5">{episode.title}</h3>
                   <p>
                     <Link to={`/details/${episode.tvshowId}`}>
-                      Série : {episode.tvshowTitle}
+                      {episode.tvshowTitle}
                     </Link>
                   </p>
                   <p>
