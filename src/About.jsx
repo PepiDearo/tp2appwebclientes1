@@ -22,14 +22,6 @@ export function About() {
           <li>Peut etre plus d'exemples interactifs pour la matiere?</li>
         </ul>
 
-
-        <h1 className="subtitle mt-5" id="commentaires-title">
-          Commentaires pas en lien avec ce qui est demandé dans les énoncés
-        </h1>
-        <ul aria-describedby="about-desc-2">
-          <li>Pour x raison, il faut refresh la page pour que les episodes soient grises, mais lorsqu'on deploie on recoie un erreur qui dit: "The resource you are looking for has been removed, had its name changed, or is temporarily unavailable. "</li>
-          
-        </ul>
         
 
       </div>
