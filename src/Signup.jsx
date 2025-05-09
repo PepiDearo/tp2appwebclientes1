@@ -142,7 +142,7 @@ export function Signup() {
                             id="email"
                             type="email"
                             className="input"
-                            placeholder="e1234567@site.com"
+                            placeholder="e2271660@site.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             aria-required="true"
@@ -161,7 +161,7 @@ export function Signup() {
                             id="username"
                             type="text"
                             className="input"
-                            placeholder="e1234567"
+                            placeholder="e2271660"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             aria-required="true"

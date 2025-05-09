@@ -87,7 +87,7 @@ export function Login() {
                             id="username"
                             type="text"
                             className="input"
-                            placeholder="e1234567"
+                            placeholder="e2271660"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             aria-required="true"
