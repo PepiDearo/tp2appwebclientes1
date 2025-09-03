@@ -12,11 +12,6 @@ Ce projet consiste à développer un site web de type Netflix/Crunchyroll où de
 ## Objectifs
 
 - Développer un site web interactif pour l’affichage et le visionnement de téléséries.
-- Appliquer les bonnes pratiques React :
-  - Un seul composant par fichier
-  - Code clair et maintenable
-  - Pas d’erreurs ni de warnings React
-  - Pas de violations ESLint
 
 ---
 
