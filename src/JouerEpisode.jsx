@@ -29,7 +29,7 @@ export function JouerEpisode() {
         }
 
         const data = await response.json();
-        setVideoURL(data.videoURL);
+        setVideoURL(data.videoUrl);
 
         addToHistory(Number(episodeId));
       } catch (err) {
