@@ -1,4 +1,3 @@
-
 # TP2 – Application Web de Téléséries
 
 ## Général
@@ -82,47 +81,10 @@ Ce projet consiste à développer un site web de type Netflix/Crunchyroll où de
   - Mot de passe de confirmation identique
 - Redirige vers Login après inscription réussie
 
-#### About.jsx
-
-- Suggestions pour améliorations ou fonctionnalités supplémentaires
-
----
-
-### Composants réutilisables
-
-- **Menu** : visible sur toutes les pages
-  - Non-authentifié : Home, SignUp, Login, About
-  - Authentifié : Home, History, Profile, Logout, About
-- **TvShow** : affichage d’une série
-- **Episode** : affichage d’un épisode
-- **Actor** : affichage d’un acteur avec son rôle
-- **Season** : affichage d’une saison
-
----
-
-## Accessibilité
-
-- Utilisation de l’attribut `role` pour identifier les parties de la page
-- `alt` pour toutes les images
-- `aria-required` pour les champs obligatoires
-- `aria-describedby` pour les messages d’erreur
-- Messages d’erreur accessibles via tabulation et focus
-
----
-
-## Technologies
-
-- React
-- Bulma CSS pour le style
-- API REST externe
-- Context API pour le stockage global du jeton et de l’historique
-
----
-
 ## Déploiement
 
 1. Générer l’application :
 
 ```bash
-npm run build
+npm run dev
 ```
