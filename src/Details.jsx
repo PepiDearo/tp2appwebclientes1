@@ -43,7 +43,7 @@ export function Details() {
           <div className="column is-one-third">
             <figure className="image">
               <img
-                src={show.imgURL}
+                src={show.imgUrl}
                 alt={`Affiche de ${show.title}`}
                 className="has-ratio"
                 style={{ width: '100%', height: 'auto' }}
@@ -86,14 +86,14 @@ export function Details() {
                 <span>{show.plot}</span>
               </div>
 
-              {show.audioURL && (
+              {show.audioUrl && (
                 <audio 
                   ref={audioRef} 
                   controls 
                   aria-label="Extrait audio"
                   className="mt-4"
                 >
-                  <source src={show.audioURL} type="audio/ogg" />
+                  <source src={show.audioUrl} type="audio/ogg" />
                   Votre navigateur ne supporte pas l'élément audio.
                 </audio>
               )}

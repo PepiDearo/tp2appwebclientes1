@@ -31,7 +31,7 @@ export function AfficherActeurs({ roles }) {
             <div className="card-image">
               <figure className="image" role="presentation">
                 <img
-                  src={role.imgURL}
+                  src={role.imgUrl}
                   alt={`Portrait de ${role.name}`}
                   style={{
                     objectFit: 'cover',

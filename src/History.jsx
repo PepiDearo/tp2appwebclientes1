@@ -59,7 +59,7 @@ export function Historique() {
                   <figure className="image is-16by9">
                     <Link to={`/jouer/${episode.episodeId}`} aria-label={`Rejouer l'épisode ${episode.title}`}>
                       <img
-                        src={episode.imgURL}
+                        src={episode.imgUrl}
                         alt={`Image de l'épisode ${episode.title}`}
                       />
                     </Link>

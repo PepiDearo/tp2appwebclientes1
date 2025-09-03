@@ -42,7 +42,7 @@ export function AfficherSaison({ seasons }) {
               <div className="card-image">
                 <figure className="image is-3by4" role="presentation">
                   <img
-                    src={season.imgURL}
+                    src={season.imgUrl}
                     alt={`Couverture de la saison ${season.number}`}
                     style={{
                       objectFit: 'cover',

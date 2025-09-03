@@ -12,7 +12,7 @@ export function TvShow(props) {
           <div className="card-image">
             <figure className="image is-3by4">
               <img 
-                src={props.tvShow.imgURL} 
+                src={props.tvShow.imgUrl} 
                 alt={`Affiche de ${props.tvShow.title}`} 
                 style={{
                   objectFit: 'cover',

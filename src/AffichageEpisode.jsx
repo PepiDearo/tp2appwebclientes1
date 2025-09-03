@@ -19,7 +19,7 @@ export function AffichageEpisode({ episode, isWatched }) {
           <div className="card-image">
             <figure className="image is-16by9">
               <img
-                src={episode.imgURL}
+                src={episode.imgUrl}
                 alt={`Image de l'épisode ${episode.title}`}
               />
             </figure>
